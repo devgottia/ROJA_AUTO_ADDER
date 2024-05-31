@@ -44,16 +44,13 @@ $(document).ready(function () {
       );
       $("#edit-submitted-platform").val(data.platform);
       $("#edit-submitted-bitrate").val(data.bitrate);
-      $("#edit-submitted-event1-date-1-month").prop(
-        "selectedIndex",
+      $("#edit-submitted-event1-date-1-month").val(
         parseInt(data.monthIndex) + 1
       );
-      $("#edit-submitted-event1-date-1-day").prop(
-        "selectedIndex",
+      $("#edit-submitted-event1-date-1-day").val(
         parseInt(data.dayIndex) + 1
       );
-      $("#edit-submitted-event1-date-1-year").prop(
-        "selectedIndex",
+      $("#edit-submitted-event1-date-1-year").val(
         parseInt(data.yearIndex) + 1
       );
       $("#edit-submitted-event1-starttime-1").val(data.startTime);

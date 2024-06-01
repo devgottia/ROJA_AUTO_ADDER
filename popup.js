@@ -1,60 +1,65 @@
+// Function to get the number of days in a month
 function daysInMonth(month, year) {
   return new Date(year, month, 0).getDate();
 }
 
+// Array of month names
 const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
 ];
 
+// Get current date details
 const date = new Date();
 const fullYear = date.getFullYear();
-const month = date.getMonth();
+const monthIndex = date.getMonth(); // Get the index of the current month
 const day = date.getDate();
 
+// Populate the select dropdown for months
 $("#monthIndex").append(`
-
-<option value="${month}"> ${months[month]} </option>
-<option value="${month + 1}"> ${months[month + 1]} </option>
-
+  <option value="${monthIndex}">${months[monthIndex]}</option>
+  <option value="${monthIndex + 1}">${months[(monthIndex + 1) % 12]}</option>
 `);
 
-if (daysInMonth(fullYear, month) === 31) {
+// Populate the select dropdown for days based on the number of days in the current month
+if (daysInMonth(fullYear, monthIndex + 1) === 31) {
   if (day === 31) {
     $("#dayIndex").append(`
-
-<option value="${day}"> ${day} </option>
-<option value="${1}"> ${1} </option>
-
-`);
-  }
-} else {
-  if (day === 30) {
-    $("#dayIndex").append(`
-
-<option value="${day}"> ${day} </option>
-<option value="${1}"> ${1} </option>
-
-`);
+      <option value="${day}">${day}</option>
+      <option value="${1}">${1}</option>
+    `);
   } else {
     $("#dayIndex").append(`
-
-    <option value="${day}"> ${day} </option>
-    <option value="${day + 1}"> ${day + 1} </option>
-    
+      <option value="${day}">${day}</option>
+      <option value="${day + 1}">${day + 1}</option>
+    `);
+  }
+} else if (daysInMonth(fullYear, monthIndex + 1) === 30) {
+  if (day === 30) {
+    $("#dayIndex").append(`
+      <option value="${day}">${day}</option>
+      <option value="${1}">${1}</option>
+    `);
+  } else {
+    $("#dayIndex").append(`
+      <option value="${day}">${day}</option>
+      <option value="${day + 1}">${day + 1}</option>
+    `);
+  }
+} else { // If the month has 28 or 29 days (February)
+  if (day === 28 || day === 29) {
+    $("#dayIndex").append(`
+      <option value="${day}">${day}</option>
+      <option value="${1}">${1}</option>
+    `);
+  } else {
+    $("#dayIndex").append(`
+      <option value="${day}">${day}</option>
+      <option value="${day + 1}">${day + 1}</option>
     `);
   }
 }
+
 
 $("#yearIndex").append(`
 

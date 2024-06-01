@@ -34,25 +34,19 @@ $(document).ready(function () {
       // Fill the form fields with the received data
       $("#edit-submitted-channel-name").val(data.channel_name);
       $("#edit-submitted-url").val(
-        `https://cr7streams.movieon.online/${data.channelId}/rj-${encodeURI(
+        `https://cr7streams.movieon.online/live/rj-${encodeURI(
           data.sport.toLowerCase()
         )}-${encodeURI(
           data.opponent1.replaceAll(" ", "-").toLowerCase()
         )}-${encodeURI(data.opponent2.replaceAll(" ", "-").toLowerCase())}-${
           leftIndex + 1
-        }.html`
+        }.html?ch=${data.channelId}`
       );
       $("#edit-submitted-platform").val(data.platform);
       $("#edit-submitted-bitrate").val(data.bitrate);
-      $("#edit-submitted-event1-date-1-month").val(
-        parseInt(data.monthIndex) + 1
-      );
-      $("#edit-submitted-event1-date-1-day").val(
-        parseInt(data.dayIndex) + 1
-      );
-      $("#edit-submitted-event1-date-1-year").val(
-        parseInt(data.yearIndex) + 1
-      );
+      $("#edit-submitted-event1-date-1-month").val(parseInt(data.monthIndex) + 1);
+      $("#edit-submitted-event1-date-1-day").val(parseInt(data.dayIndex));
+      $("#edit-submitted-event1-date-1-year").val(parseInt(data.yearIndex));
       $("#edit-submitted-event1-starttime-1").val(data.startTime);
       $("#edit-submitted-event1-discipline-1").val(data.sport);
       $("#edit-submitted-event1-competition-1").val(data.league);
